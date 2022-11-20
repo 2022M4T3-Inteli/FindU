@@ -1,0 +1,20 @@
+{
+  "name": "apifindu",
+  "version": "1.0.0",
+  "description": "API de localização de beacons",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Pedro G F Silva",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
