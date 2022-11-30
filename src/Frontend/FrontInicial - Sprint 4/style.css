@@ -1,34 +1,35 @@
 /*Resetando o HTML*/
-body{
+body {
     padding: 0px;
     margin: 0px;
     background-color: rgb(65, 65, 65);
 }
 
-button{
+button {
     padding: 0px;
     margin: 0px;
 }
 
-ul{
+ul {
     list-style: none;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
 /* Menu*/
-.top-menu{
+.top-menu {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 10vh;
-    font-family:'Inter', sans-serif;
+    font-family: 'Inter', sans-serif;
     width: 100%;
 }
 
-.btn{
+.btn {
     display: flex;
     justify-content: center;
     text-align: center;
@@ -37,74 +38,73 @@ a{
     padding-left: 20px;
     padding-right: 20px;
     color: aliceblue;
-    background-color:  rgb(65, 65, 65);
-    cursor:default;
+    background-color: rgb(65, 65, 65);
+    cursor: default;
     height: 10vh;
     align-items: center;
     border-right: 2px solid #333;
 
 }
 
-.btn:hover{
+.btn:hover {
     background-color: #595B5D;
-    cursor:pointer;
+    cursor: pointer;
 
 }
 
-.btn_on{
+.btn_on {
     position: absolute;
     margin: 0px;
     padding: 0px;
     border-radius: 100px;
-    background-color:#F4EEEE;
-    height: 16px;
+    background-color: #F4EEEE;
+    height: 8px;
     width: 10%;
     transition: 0.5s;
-    
 }
 
-#pesquisa{
+#pesquisa {
     display: flex;
     flex-direction: row;
     margin-bottom: 5vh;
 }
 
-#pesquisa input{
+#pesquisa input {
     width: 350px;
     padding: 10px;
     border-radius: 10px 0px 0px 10px;
     font-family: 'Inter', sans-serif;
     border: 1px solid #333;
     background-color: #FFFFFF;
-    color:  #333;  
+    color: #333;
 }
 
-.btn-search{
-   border-radius: 0px 10px 10px 0px;
-   border: 1px solid #333;
-   padding: 10px;
-   background-color: #F4EEEE;
-   cursor: pointer;
-   box-shadow: 0px 0px 15px rgba(105, 50, 50, 0.244);
+.btn-search {
+    border-radius: 0px 10px 10px 0px;
+    border: 1px solid #333;
+    padding: 10px;
+    background-color: #F4EEEE;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px rgba(105, 50, 50, 0.244);
 
 }
 
-.btn-search:hover{
+.btn-search:hover {
     background-color: #EDD349;
     color: black;
     box-shadow: 0px 0px 15px rgba(105, 50, 50, 0);
 }
 
 
-#import_btn{
+#import_btn {
     display: flex;
     border-style: none;
     border: 1px solid rgb(65, 65, 65);
     background-color: #F4EEEE;
     justify-content: center;
-    cursor:pointer;
-    color:black;
-    font-family:'Inter', sans-serif;
+    cursor: pointer;
+    color: black;
+    font-family: 'Inter', sans-serif;
     padding: 20px;
     border-radius: 10px;
     font-size: 15px;
@@ -117,7 +117,7 @@ a{
     box-shadow: 5px 5px 5px rgba(105, 50, 50, 0.244);
 }
 
-#import_btn:hover{
+#import_btn:hover {
     background-color: #EDD349;
     color: black;
     box-shadow: 0px 0px 0px rgba(245, 245, 245, 0.244);
@@ -125,46 +125,48 @@ a{
 }
 
 
-.logout{
+.logout {
     display: flex;
     margin-top: 3vh;
     margin-left: 92vw;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 
 /* Display */
-#painel{ /* <-- Backgraund */
+#painel {
+    /* <-- Backgraund */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-top: solid 1px rgb(96, 96, 96);
     height: 80vh;
-    background-color:#F4EEEE;
-    font-family:'Inter', sans-serif;
-    font-weight:bolder;
+    background-color: #F4EEEE;
+    font-family: 'Inter', sans-serif;
+    font-weight: bolder;
 }
 
-#tela{ /* <-- Tela preta que contem tudo */
+#tela {
+    /* <-- Tela preta que contem tudo */
     display: flex;
     background-color: rgb(0, 0, 0);
     width: 80vw;
     height: 80%;
 }
 
-#listas_Beacon{
+#listas_Beacon {
     display: flex;
-    flex-direction: row ;
+    flex-direction: row;
     justify-content: center;
     gap: 5%;
     background-color: rgb(65, 65, 65);
     padding-top: 20px;
-    
+
 
 }
 
-#lista_Beacon > li{
+#lista_Beacon>li {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -174,7 +176,7 @@ a{
     width: 295px;
 }
 
-.beancon{
+.beancon {
     min-width: 250px;
     width: 20%;
     display: flex;
@@ -186,7 +188,7 @@ a{
     height: 45px;
 }
 
-.quadrado{
+.quadrado {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -210,7 +212,7 @@ a{
     transition: 3s;
 }*/
 
-.lista_Beacon{
+.lista_Beacon {
     transition: 3s;
     margin: 10;
     margin-left: 20px;
@@ -229,8 +231,8 @@ a{
 }
 */
 
-@media screen and (max-width:580px){
-    #listas_Beacon{
+@media screen and (max-width:580px) {
+    #listas_Beacon {
         flex-direction: column;
     }
 
@@ -239,26 +241,26 @@ a{
 /*CONFIGURAÇÕES*/
 
 
-.config{
-    background-color:rgb(65, 65, 65);
+.config {
+    background-color: rgb(65, 65, 65);
 }
 
 
-#dashboard{
+#dashboard {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 30vh;
-    background-color:#F4EEEE;
-    font-family:'Inter', sans-serif;
-    font-weight:bolder;
+    background-color: #F4EEEE;
+    font-family: 'Inter', sans-serif;
+    font-weight: bolder;
 }
 
-#blocos{
+#blocos {
     display: flex;
     align-items: center;
-    position:static;
+    position: static;
     margin-left: 11vw;
 }
 
@@ -267,7 +269,7 @@ a{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family:'Inter', sans-serif;
+    font-family: 'Inter', sans-serif;
     height: 25vh;
     width: 15vw;
     background-color: #38393B;
@@ -281,23 +283,163 @@ a{
 
 }
 
-.logout2{
+.logout2 {
     margin-bottom: 21.5vh;
-    cursor:pointer;
+    cursor: pointer;
     margin-left: 13vw;
 }
 
-
-
-
-#lista_tags{
+#lista_tags {
     background-color: rgb(65, 65, 65);
-    
+
 }
 
+table {
+    text-align: center;
+    color: white;
+    width: 100%;
+    border-collapse: collapse;
+}
 
+th,
+td {
+    padding: 20px !important;
+    width: 20%;
+    text-align: center;
+    border-bottom: 1px solid #5c5858;
+    border-top: 1px solid #5c5858;
+}
 
+tr:hover {
+    background-color: rgb(123, 120, 120);
+}
 
+tr:nth-child(even) {
+    /*cor da alternância das linhas da tabela */
+    background-color: #8b88882b;
+}
+
+tr:nth-child(even):hover {
+    background-color: rgb(102, 102, 102);
+}
+
+tr:first-child:hover {
+    background: none;
+    /* tiramos o hover da 1ª linha */
+}
+
+.quadrado_verde {
+    background-color: #04f3205f;
+    border-radius: 0.1cm;
+    opacity: 0.9;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.quadrado_azul {
+    background-color: #0d8af0d4;
+    border-radius: 0.1cm;
+    opacity: 0.9;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.quadrado_roxo {
+    background-color: #7e0df0d4;
+    border-radius: 0.1cm;
+    opacity: 0.9;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.hide {
+    display: none;
+}
+
+/* begin of MODAL */
+.modal-content{
+    margin-top: -13px;
+    height: 95vh;
+    background-color: #F4EEEE;
+}
+.modal-body {
+    display: block !important;
+    margin: auto;
+    overflow-y: scroll;
+    background-color: #F4EEEE;
+}
+.btn-modal{
+    margin-top: 4px;
+    margin-left: 20px;
+    float: right;
+    height: 35px;
+    width: 90px;
+    border: none;
+    background-color: #F4EEEE;
+    color: #fff;
+    border-radius: 5px;
+    transition: .3s;
+}
+.btn-modal-cancel{
+    margin-top: 4px;
+    float: right;
+    height: 35px;
+    width: 90px;
+    border: none;
+    background-color: #04f3205f;
+    color:#131313;
+    border-radius: 2px;
+    border: 4px solid var(--light-secondary-color);
+    transition: .3s;
+}
+.btn-modal:hover{
+    background-color: var(--dark-main-color);
+    color: #fff;
+}
+.btn-modal-cancel:hover{
+    background-color: #fff;
+    color: var(--dark-main-color);
+    border: 4px solid var(--dark-main-color);
+}
+.input-box {
+    padding: 4px 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.input-box input{
+    width: 400px;
+    border: 1px solid var(--dark-main-color);
+    height: 35px;
+    border-radius: 5px;
+}
+
+.modal-header{
+    padding: 10px 20px 10px 20px;
+    background-color: #EDD349;
+    color: #fff;
+    height: 50px;
+    margin-top: 0;
+    display: flex;
+}
+
+.modal-footer {
+    display: block !important;
+}
+.modal_close{
+    background: none;
+    border: none;
+    color: #fff;
+}
+.modal_close ion-icon{
+    font-size: 30px;
+    margin-top: 6px;
+    transition: .3s;
+}
+.modal_close:hover ion-icon{
+    color: var(--light-secondary-color);
+}
+/* end of MODAL */
 
 /* STYLE CSS DA PÁGINA DE LOGIN */
 
@@ -312,8 +454,8 @@ a{
 
 .login {
     height: 100vh;
-    background-color:#F4EEEE;
- }
+    background-color: #F4EEEE;
+}
 
 
 .height {
@@ -340,22 +482,22 @@ a{
     top: 10%;
     margin-top: 20vh;
     display: grid;
-    background-color:#F4EEEE;
+    background-color: #F4EEEE;
 
-    
+
 }
 
 .login-form h1 {
     font-family: 'Inter', sans-serif;
     text-align: center;
-    background-color:#F4EEEE;
+    background-color: #F4EEEE;
     font-size: 40px;
 }
 
 .login-form span {
     height: 1px;
     width: 350px;
-    background-color:#F4EEEE;
+    background-color: #F4EEEE;
     margin: 20px 0 20px 0;
 }
 
@@ -370,7 +512,7 @@ a{
     font-family: 'Inter', sans-serif;
     border: 1px solid rgb(65, 65, 65);
     background-color: #c4c4c4;
-    color:  #333;   
+    color: #333;
 
 }
 
@@ -382,7 +524,7 @@ a{
     width: 160px;
     margin-left: 23%;
     margin-top: 5%;
-    
+
 }
 
 .login-form button {
@@ -394,16 +536,16 @@ a{
     width: 160px;
     cursor: pointer;
     background-color: #FFE34E;
-    color:#333;
-    font-weight:bolder;
+    color: #333;
+    font-weight: bolder;
 }
 
-.login-form button:hover { 
+.login-form button:hover {
     background-color: #EDD349;
 }
 
 
-.logo{
+.logo {
     margin-left: 5vw;
     margin-top: 20vh;
 }
