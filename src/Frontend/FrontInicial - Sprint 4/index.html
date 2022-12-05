@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Referência para a bliblioteca Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+    integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+    integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+    crossorigin=""></script>
+    <!-- -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Find_U_</title>
+</head>
+<body onload="tagsCoordenate()">
+    <div id="contener">
+        <!-- Barra de navegação superior -->
+        <nav style="width: 100%;">
+            <ul class="top-menu-1">
+                <li class="top-menu-1">
+                    <a  class="btn-1" href="index.html"><span style="padding-right: 10px;" class="material-symbols-outlined">
+                        map
+                        </span> Mapa</a>
+                </li>
+                <li class="top-menu-1">
+                    <a  class="btn-1" href="configuracao.html"><span style="padding-right: 10px;" class="material-symbols-outlined">
+                        settings
+                        </span> Configurações</a>
+                </li>
+            </ul>
+            <div style="left: 20.5%; top: 9.4%;" class="btn_on-1"></div> <!-- Indicador de seleção -->
+        </nav>
+        <!-- Painel por trás da tela -->
+        <div id="painel">
+            <a class="logout"  href="login.html">
+                <span class="material-symbols-outlined">
+                    logout
+                    </span>
+            </a>
+            <!-- Barra de pesquisa -->
+            <div>
+                <form id="pesquisa" action="">
+                    <input type="text" placeholder="   Digite o ativo que você deseja encontrar">
+                    <button type="submit" class="btn-1-search"><span class="material-symbols-outlined">
+                     search</span></button>
+                </form>
+            </div>
+            <!-- Tela contendo o mapa -->
+            <div id="tela">
+            </div>
+            <label class="label_input " for="mapaForm">Alterar fundo</label>
+            <input id="mapaForm" type="file" accept="image/png, image/jpeg">
+        </div>
+        <!-- Lista que armazena os beacons -->
+        <div id="listas_Beacon">
+        </div>
+    </div>
+    <script src="codeFront.js"></script>
+</body>
+</html>
