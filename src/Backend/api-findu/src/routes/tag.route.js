@@ -1,15 +1,16 @@
-// importando os módulos utilizados
+// importando rota do express e arquivo controller
 import express from 'express';
 import tagController from '../controllers/tag.controller.js';
 
 // criando rota
 const route = express.Router();
 
-// criando os métodos e chamando suas respectivas funções
+// criando as rotas que retornam, contam, criam, atualizam e apagam uma tag, respectivamente
 route.get('/', tagController.getAll);
+route.get('/countDocuments', tagController.countDocuments);
 route.post('/', tagController.create);
-route.patch('/', tagController.patch); //VER DPS SARAH
+route.patch('/', tagController.update);
+route.delete('/:id', tagController.erase);
 
-
-// exportando a rota criada acima
+// exportando rota
 export default route;

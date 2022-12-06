@@ -1,3 +1,4 @@
+// lógica que mostra o modal de tag atualizada
 if(localStorage.getItem('message')){
     if(localStorage.getItem('message') == 'updated tag'){
         toastShow();
@@ -15,7 +16,7 @@ function toastShow(){
     });
 }
 
-
+// lógica que mostra o modal de tag criada
 if(localStorage.getItem('message')){
     if(localStorage.getItem('message') == 'create category'){
         toastShowCategory();
@@ -33,10 +34,12 @@ function toastShowCategory(){
     });
 }
 
-
+// variável que armazena a tabela de tags
 var tabela_configuracao = document.getElementById('corpo-tabela-tags');
+// variável que retorna se precisa mostras as categorias
 let showCategories = true;
 
+// requisição ajax que retorna as tags cadastradas no sistemas e atualiza elas na página
 let ajax = new XMLHttpRequest();
 ajax.open("GET", "https://sd5nhr-3000.preview.csb.app/tag", true);
 ajax.onreadystatechange = () => {
@@ -57,6 +60,7 @@ ajax.onreadystatechange = () => {
 
 ajax.send();
 
+// função que atualiza tag
 function patchTag(id) {
     let urlCategories = "https://sd5nhr-3000.preview.csb.app/category";
     let ajax = new XMLHttpRequest();
@@ -103,6 +107,7 @@ function patchTag(id) {
 
 }
 
+// função que atualiza informações da tag
 function update() {
     let id = document.getElementById("id_form_2").value;
     let name = document.getElementById("name_form_2").value;
@@ -130,6 +135,7 @@ function update() {
     });
 }
 
+// mostra modal de criar categoria na tela
 let addCategory = document.getElementById('addCategory');
 
 addCategory.addEventListener('click', () => {
@@ -139,6 +145,7 @@ addCategory.addEventListener('click', () => {
     createModal.show();
 });
 
+// função que cria uma nova categoria no sistema
 function createCategory() {
     let name = document.getElementById("name_create_category").value;
     let color = document.getElementById("color_create_category").value;
@@ -166,6 +173,7 @@ function createCategory() {
     addToastToCreateCategory();
 }
 
+// função que deleta tag do sistema
 function deleteTag(id) {
     swal({
         title: "Deseja excluir essa tag?",

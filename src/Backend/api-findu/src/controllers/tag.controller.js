@@ -1,18 +1,21 @@
-// importando o arquivo service responsável por interagir com o banco de dados
+// importando arquivo de service e mongoose
 import tagService from '../services/tag.service.js';
+import mongoose from 'mongoose';
 
-// função que cria uma nova tag no banco de dados 
+// função que cria uma nova tag no sistema
 const create = async (req, res) => {
     try {
-        const { status, name, category, positionX, positionY, positionZ } = req.body;
+        const { macAddress, name, category, positionX, positionY, positionZ } = req.body;
 
-        if (!status || !positionX || !positionY || !positionZ) {
+        if(!macAddress || !positionX || !positionY || !positionZ) {
             res.status(400).send({ message: 'Please, submit all the fields required!' });
         }
 
+        mongoose.Types.ObjectId(req.body.category);
+
         const tag = await tagService.createService(req.body);
 
-        if (!tag) {
+        if(!tag) {
             return res.status(400).send({ message: 'Error creating tag!' });
         }
 
@@ -20,7 +23,7 @@ const create = async (req, res) => {
             message: 'Tag created successfully',
             tag: {
                 id: tag._id,
-                status,
+                macAddress,
                 name,
                 category,
                 positionX,
@@ -33,46 +36,78 @@ const create = async (req, res) => {
     }
 }
 
-// função que retorna todas as tags cadastradas no sistema
+// função que retorna todas as tags do sistema
 const getAll = async (req, res, next) => {
     try {
         const tags = await tagService.getAllService();
 
-        if (tags.length === 0) {
+        if(tags.length === 0) {
             return res.status(400).send({ message: 'There are no tags registered in the database' });
-
         }
+
         res.header('Access-Control-Allow-Origin', '*');
         res.json(tags);
         next();
+
     } catch (error) {
         res.status(500).send({ message: error.message });
     }
 }
-//VER DPS - SARAH
-// const patch = (req, res) => {
-//     res.statusCode = 200;
-//     res.setHeader('Access-Control-Allow-Origin', '*');
 
-//     var params = req.params;
-//     var body = req.body;
-//     var sql;
+// função que atualiza as informações da tag
+const update = async (req, res) => {
+    try {
+        const { id, macAddress, name, category, positionX, positionY, positionZ } = req.body;
 
-//     sql = `UPDATE employees SET full_name="${body.full_name}", position="${body.position}", legal_hours="${body.legal_hours}", total_hours="${body.total_hours}", allocated_hours="${body.allocated_hours}", outsourced="${body.outsourced}", local="${body.local}", isActive="${body.isActive}" WHERE id=${params.id}`
+        if(!id && !macAddress && !name && !category && !positionX && !positionY && !positionZ) {
+            res.status(400).send({ message: 'Submit at least one field!' });
+        }
 
-//     var db = new sqlite3.Database("./data/main.db"); // Abre o banco
-//     db.run(sql, [], err => {
-//         if (err) {
-//             throw err;
-//         }
-//         res.send("Funcionário foi atualizado");
-//         res.end();
-//     });
-//     db.close(); // Fecha o banco
-// }
+        mongoose.Types.ObjectId(req.body.category);
 
-// exportando as funções criadas acima para utiliza-las em outros arquivos
+        await tagService.updateService(id, macAddress, name, category, positionX, positionY, positionZ);
+
+        return res.status(200).send({ message: 'Tag successfully updated' });
+    } catch (error) {
+        res.status(500).send({ message: error.message });   
+    }
+}
+
+// função que deleta uma tag do sistema
+const erase = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        await tagService.eraseService(id);
+
+        return res.status(200).send({ message: 'Tag successfully deleted' });
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+// função que conta a quantidade de tags existentes
+const countDocuments = async (req, res) => {
+    try {
+        let result = await tagService.countDocumentsService();
+
+        if(result.length === 0) {
+            res.status(404).send({ message: 'There are no tags registered in the database' });
+        }
+
+        res.json({
+            documents: result
+        });
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+// exportando métodos criados acima
 export default {
     create,
-    getAll
+    getAll,
+    update,
+    erase,
+    countDocuments
 }

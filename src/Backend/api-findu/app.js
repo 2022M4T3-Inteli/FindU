@@ -3,29 +3,30 @@ import express from 'express';
 import db from './src/database/db.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
+
+// importando arquivos de rotas
 import tagRoute from './src/routes/tag.route.js';
+import categoryRoute from './src/routes/category.route.js';
+import beaconRoute from './src/routes/beacon.route.js';
 
 // configurando dotenv
 dotenv.config();
 
-// criando um servidor e definindo sua porta
+// criando servidor e inicializando sua porta
 const app = express();
 const PORT = 3000 || process.env.PORT;
 
 // conectando com o banco de dados
 db.connectDatabase();
 
-// utilizando middlewares e rota
+// usando middlewares e rotas
 app.use(express.json());
-app.use('/tag', tagRoute);
 app.use(cors());
+app.use('/tag', tagRoute);
+app.use('/category', categoryRoute);
+app.use('/beacon', beaconRoute);
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
-
-// inicializando o servidor em sua respectiva porta
+// inicializando servidor em sua respectiva porta
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}...`);
 });

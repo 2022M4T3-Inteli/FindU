@@ -1,36 +1,37 @@
-// importando o módulo mongoose, utilizado para conectar com o banco de dados
+// importando módulo mongoose
 import mongoose from 'mongoose';
 
-// criando um "schema" com os dados que iremos armazenar no banco de dados
+// criando uma schema com as informações das tags
 const TagSchema = new mongoose.Schema({
-    status: {
-        type: Number,
-        required: true,
+    macAddress: {
+        type: String,
+        required: false,
     },
     name: {
         type: String,
         required: false,
     },
     category: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category",
         required: false,
     },
     positionX: {
         type: Number,
-        required: true,
+        required: false,
     },
     positionY: {
         type: Number,
-        required: true,
+        required: false,
     },
     positionZ: {
         type: Number,
-        required: true,
+        required: false,
     }
 });
 
-// criando o modelo de cada documento
+// criando modelo
 const Tag = mongoose.model('Tag', TagSchema);
 
-// exportando modelo criado acima
+// exportando modelo
 export default Tag;
