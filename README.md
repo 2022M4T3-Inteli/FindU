@@ -7,7 +7,7 @@
 
 # Projeto: Find U
 Localização indoor de Ativos
-<a><img src="https://github.com/2022M4T3-Inteli/Projeto2/blob/main/src/Frontend/FrontInicial%20-%20Sprint%204/imagens/logo.png" border="0"></a>
+<a><img src="https://github.com/2022M4T3-Inteli/Projeto2/blob/main/src/Frontend/FrontInicial%20-%20Sprint%204/imagens/FIND%20U%20(1).png" border="0"></a>
 
 ## Integrantes:
 - <a href = "https://www.linkedin.com/in/felipe-sampaio-silva" >Felipe Sampaio</a>
