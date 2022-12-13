@@ -1,5 +1,3 @@
-
-
 if (localStorage.getItem("message")) {
   if (localStorage.getItem("message") == "updated tag") {
     toastShow();
@@ -12,10 +10,11 @@ function addToastUpdate() {
 }
 
 function toastShow() {
-  swal("Tag atualizada com sucesso!", "", "success", {
+  swal("Planta baixa enviada com sucesso!", "", "success", {
     dangerMode: true,
   });
 }
+
 
 if (localStorage.getItem("message")) {
   if (localStorage.getItem("message") == "create category") {

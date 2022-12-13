@@ -1,3 +1,20 @@
+if (localStorage.getItem("message")) {
+  if (localStorage.getItem("message") == "map photo") {
+    toastShow();
+    localStorage.removeItem("message");
+  }
+}
+
+function addToastPhoto() {
+  localStorage.setItem("message", "map photo");
+}
+
+function toastShow() {
+  swal("Fundo alterado com sucesso!", "", "success", {
+    dangerMode: true,
+  });
+}
+
 var dA1; // Posição do beacon y
 var dA2; // Posição do beacon x
 var dA3; // Posição do beacon z
@@ -81,7 +98,7 @@ input_obj.addEventListener('change',function(e){
   if(file){
       mapaTextura = URL.createObjectURL(file);
       console.log(mapaTextura);
-      let url = "http://localhost:3000/upload";
+      let url = "https://s1cm6i-3000.preview.csb.app/upload";
       let formData = new FormData();
       formData.append("testImage", file);
       $.ajax({
@@ -92,6 +109,7 @@ input_obj.addEventListener('change',function(e){
           processData: false
       }).done(function(response){
           console.log(response);
+          addToastPhoto();
       }).fail(function(error){
           console.log(error);
       }).always(function(){
@@ -99,7 +117,7 @@ input_obj.addEventListener('change',function(e){
           location.reload();
       });
   }
-  localStorage.setItem('name', `http://localhost:3000/${file.name}`);
+  localStorage.setItem('name', `https://s1cm6i-3000.preview.csb.app/${file.name}`);
 });
 
 let urlImages = localStorage.getItem('name');
@@ -222,7 +240,7 @@ function plotTag(x, y) {
           ].category.name.toLowerCase()}" style="background: ${
             dados[i].category.color
           };"></div>`,
-        }); // Configuração da aparência da tag
+        }); // Configuração da aparência da tag 
         beacons.push(dados[i]["positionX"]);
         beacons.push(dados[i]["positionY"]);
         beacons.push(dados[i]["positionZ"]);
