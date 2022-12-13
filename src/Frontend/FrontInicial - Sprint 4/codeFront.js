@@ -43,10 +43,6 @@ var search = document.getElementById("serach_input");
 
 var listaB = document.getElementById("listas_Beacon"); // Local na página index referênte a lista de beacons
 
-if (ReferenceError) {
-  localStorage.clear();
-}
-
 // Inicialização do objeto L.map da biblioteca leaflet
 var tela = L.map("tela").setView([5, 0], 4);
 L.tileLayer("imagens/bg_map.png", {
@@ -77,20 +73,47 @@ search.addEventListener(search, function (e) {
 });
 
 // Alterador da imagem da página
-input_obj.addEventListener("change", function (e) {
+input_obj.addEventListener('change',function(e){
   let inputTarget = e.target;
-  console.log(e);
-  console.log(inputTarget);
+  console.log(e)
+  console.log(inputTarget)
   let file = inputTarget.files[0];
-  if (file) {
-    localStorage.clear();
-    mapaTextura = URL.createObjectURL(file);
-    localStorage.setItem("img", mapaTextura);
-    document.getElementById(
-      "tela"
-    ).style.backgroundImage = `url(${mapaTextura})`;
+  if(file){
+      mapaTextura = URL.createObjectURL(file);
+      console.log(mapaTextura);
+      let url = "http://localhost:3000/upload";
+      let formData = new FormData();
+      formData.append("testImage", file);
+      $.ajax({
+          url: url,
+          type: "POST",
+          data: formData,
+          contentType: false,
+          processData: false
+      }).done(function(response){
+          console.log(response);
+      }).fail(function(error){
+          console.log(error);
+      }).always(function(){
+          console.log('Success');
+          location.reload();
+      });
   }
+  localStorage.setItem('name', `http://localhost:3000/${file.name}`);
 });
+
+let urlImages = localStorage.getItem('name');
+
+let ajax = new XMLHttpRequest();
+
+ajax.open('GET', urlImages, true);
+ajax.onreadystatechange = () => {
+  if(ajax.status === 200 && ajax.readyState === 4) {
+      document.getElementById('tela').style.backgroundImage = `url(${localStorage.getItem('name')})`;
+  }
+}
+
+ajax.send();
 
 // Cria uma requição ao servidor para conseguir as informações da tag
 function tagsCoordenate() {
