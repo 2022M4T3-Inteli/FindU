@@ -1,3 +1,5 @@
+
+
 if (localStorage.getItem("message")) {
   if (localStorage.getItem("message") == "updated tag") {
     toastShow();
@@ -36,26 +38,29 @@ var tabela_configuracao = document.getElementById("corpo-tabela-tags");
 let showCategories = true;
 
 let ajax = new XMLHttpRequest();
-ajax.open("GET", "https://sd5nhr-3000.preview.csb.app/tag", true);
+ajax.open("GET", "https://s1cm6i-3000.preview.csb.app/tag", true);
 ajax.onreadystatechange = () => {
   if (ajax.status == 200 && ajax.readyState == 4) {
     let dados = JSON.parse(ajax.responseText);
     console.log(dados);
     for (let i = 0; i < dados.length; i++) {
+
       $("#corpo-tabela-tags").append(`<tr id="tag_${dados[i]._id}">
+                  <td>${dados[i].macAddress}</td>
                   <td>${dados[i].name}</td>
                   <td><span class="${dados[i].category.color}"> ${dados[i].category.name} </td>
                   <td><ion-icon onclick="deleteTag('${dados[i]._id}')" name="trash-outline"></ion-icon><ion-icon name="create-outline" onclick="patchTag('${dados[i]._id}');"><ion-icon></td>
               </tr>
-              `);
+              `); 
     }
+    
   }
 };
 
 ajax.send();
 
 function patchTag(id) {
-  let urlCategories = "https://sd5nhr-3000.preview.csb.app/category";
+  let urlCategories = "https://s1cm6i-3000.preview.csb.app/category";
   let ajax = new XMLHttpRequest();
   ajax.open("GET", urlCategories, true);
   if (showCategories) {
@@ -74,7 +79,7 @@ function patchTag(id) {
     showCategories = false;
   }
 
-  let url = `https://sd5nhr-3000.preview.csb.app/tag`;
+  let url = `https://s1cm6i-3000.preview.csb.app/tag`;
   let xhttp = new XMLHttpRequest();
 
   xhttp.open("GET", url, false);
@@ -101,12 +106,13 @@ function patchTag(id) {
   addToastUpdate();
 }
 
+//Atualização da
 function update() {
   let id = document.getElementById("id_form_2").value;
   let name = document.getElementById("name_form_2").value;
   let category = document.getElementById("categories").value;
 
-  let urlTag = "https://sd5nhr-3000.preview.csb.app/tag";
+  let urlTag = "https://s1cm6i-3000.preview.csb.app/tag";
 
   $.ajax({
     type: "PATCH",
@@ -140,6 +146,7 @@ addCategory.addEventListener("click", () => {
   createModal.show();
 });
 
+// Criação de nova categoria para os itens.
 function createCategory() {
   let name = document.getElementById("name_create_category").value;
   let color = document.getElementById("color_create_category").value;
@@ -147,7 +154,7 @@ function createCategory() {
   console.log(name);
   console.log(color);
 
-  let url = "https://sd5nhr-3000.preview.csb.app/category";
+  let url = "https://s1cm6i-3000.preview.csb.app/category";
 
   $.ajax({
     type: "POST",
@@ -167,6 +174,7 @@ function createCategory() {
   addToastToCreateCategory();
 }
 
+// Deletar tag de acordo com seu ID.
 function deleteTag(id) {
   swal({
     title: "Deseja excluir essa tag?",
@@ -175,7 +183,7 @@ function deleteTag(id) {
     dangerMode: true,
   }).then((willDelete) => {
     if (willDelete) {
-      let url = `https://sd5nhr-3000.preview.csb.app/tag/${id}`;
+      let url = `https://s1cm6i-3000.preview.csb.app/tag/${id}`;
       $.ajax({
         type: "DELETE",
         url: url,
@@ -197,6 +205,7 @@ function deleteTag(id) {
   });
 }
 
+// Número total de tags em funcionamento.
 function total_tags() {
   var ajax = new XMLHttpRequest();
   ajax.open(
@@ -214,6 +223,7 @@ function total_tags() {
 }
 total_tags();
 
+// Número de beacons instalados e funcionando.
 function total_beacons() {
   var ajax = new XMLHttpRequest();
   ajax.open(
@@ -232,6 +242,7 @@ function total_beacons() {
 
 total_beacons();
 
+// Número de categorias criadas no card.
 function total_categories() {
   var ajax = new XMLHttpRequest();
   ajax.open(

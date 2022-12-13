@@ -55,7 +55,7 @@ L.tileLayer("imagens/bg_map.png", {
 }).addTo(tela);
 
 // Barra de pesquisa das tags
-search.addEventListener("input", function (e) {
+search.addEventListener(search, function (e) {
   var input = e.target.value.toLowerCase();
   if (input != "") {
     for (let a = 0; a < tags.length; ) {
@@ -95,7 +95,7 @@ input_obj.addEventListener("change", function (e) {
 // Cria uma requição ao servidor para conseguir as informações da tag
 function tagsCoordenate() {
   let ajax = new XMLHttpRequest();
-  ajax.open("GET", "https://sd5nhr-3000.preview.csb.app/tag", true);
+  ajax.open("GET", "https://s1cm6i-3000.preview.csb.app/tag", true);
   ajax.onreadystatechange = () => {
     if (ajax.status == 200 && ajax.readyState == 4) {
       let dados = JSON.parse(ajax.responseText);
@@ -113,7 +113,7 @@ function tagsCoordenate() {
 // Cria uma requição ao servidor para conseguir as informações do beacon
 function beaconCoordenates() {
   let ajax = new XMLHttpRequest();
-  ajax.open("GET", "https://sd5nhr-3000.preview.csb.app/beacon", true);
+  ajax.open("GET", "https://s1cm6i-3000.preview.csb.app/beacon", true);
   ajax.onreadystatechange = () => {
     if (ajax.status == 200 && ajax.readyState == 4) {
       let dados = JSON.parse(ajax.responseText);
@@ -184,7 +184,7 @@ function plotTag(x, y) {
   var allBeacon = "";
   // requisição ajax que retorna todos os projetos cadastrados no banco de dados
   let ajax = new XMLHttpRequest();
-  ajax.open("GET", "https://sd5nhr-3000.preview.csb.app/tag", true);
+  ajax.open("GET", "https://s1cm6i-3000.preview.csb.app/tag", true);
   ajax.onreadystatechange = () => {
     if (ajax.status == 200 && ajax.readyState == 4) {
       var beacon_num = 0;
