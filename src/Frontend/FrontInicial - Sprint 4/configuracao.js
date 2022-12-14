@@ -10,7 +10,7 @@ function addToastUpdate() {
 }
 
 function toastShow() {
-  swal("Planta baixa enviada com sucesso!", "", "success", {
+  swal("Tag atualizada com sucesso!", "", "success", {
     dangerMode: true,
   });
 }
@@ -43,14 +43,20 @@ ajax.onreadystatechange = () => {
     let dados = JSON.parse(ajax.responseText);
     console.log(dados);
     for (let i = 0; i < dados.length; i++) {
-
+      if(!dados[i].name) {
+        dados[i].name = `Tag ${i}`;
+      } else if (!dados[i].category.name) {
+        dados[i].category.name = 'oi';
+      } else if (!dados[i].category.color) {
+        dados[i].category.color = '#FFFF';
+      }
       $("#corpo-tabela-tags").append(`<tr id="tag_${dados[i]._id}">
                   <td>${dados[i].macAddress}</td>
                   <td>${dados[i].name}</td>
-                  <td><span class="${dados[i].category.color}"> ${dados[i].category.name} </td>
+                  <td><span class="${dados[i].category.color}">${dados[i].category.name}</td>
                   <td><ion-icon onclick="deleteTag('${dados[i]._id}')" name="trash-outline"></ion-icon><ion-icon name="create-outline" onclick="patchTag('${dados[i]._id}');"><ion-icon></td>
               </tr>
-              `); 
+      `); 
     }
     
   }

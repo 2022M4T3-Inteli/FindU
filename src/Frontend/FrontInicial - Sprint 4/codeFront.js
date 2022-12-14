@@ -10,7 +10,7 @@ function addToastPhoto() {
 }
 
 function toastShow() {
-  swal("Fundo alterado com sucesso!", "", "success", {
+  swal("Planta baixa enviada com sucesso!", "", "success", {
     dangerMode: true,
   });
 }
