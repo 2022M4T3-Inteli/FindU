@@ -15,9 +15,10 @@ function toastShow() {
   });
 }
 
-var dA1; // Posição do beacon y
-var dA2; // Posição do beacon x
-var dA3; // Posição do beacon z
+const positionBeacons = []
+//var dA1; // Posição do beacon y
+//var dA2; // Posição do beacon x
+//var dA3; // Posição do beacon z
 var y2; // Posição relativa da tag no eixo y
 var x2; // Posição relativa da tag no eixo x
 
@@ -68,7 +69,7 @@ L.tileLayer("imagens/bg_map.png", {
 }).addTo(tela);
 
 // Barra de pesquisa das tags
-search.addEventListener(search, function (e) {
+search.addEventListener('change', function (e) {
   var input = e.target.value.toLowerCase();
   if (input != "") {
     for (let a = 0; a < tags.length; ) {
@@ -140,11 +141,13 @@ function tagsCoordenate() {
   ajax.onreadystatechange = () => {
     if (ajax.status == 200 && ajax.readyState == 4) {
       let dados = JSON.parse(ajax.responseText);
-      dA1 = dados[0]["positionY"];
-      dA2 = dados[0]["positionX"];
-      dA3 = dados[0]["positionZ"];
+      //dA1 = dados[0]["positionY"];
+      //dA2 = dados[0]["positionX"];
+      //dA3 = dados[0]["positionZ"];
+      positionBeacons.append(dados[0]["positionY"]);
+      positionBeacons.append(dados[0]["positionX"]);
+      positionBeacons.append(dados[0]["positionZ"]);
       console.log("Dados");
-      console.log(`${dA1}, ${dA2}, ${dA3}`);
       beaconCoordenates();
     }
   };
@@ -160,8 +163,12 @@ function beaconCoordenates() {
       let dados = JSON.parse(ajax.responseText);
       y2 = dados[0]["distanceA"];
       x2 = dados[0]["distanceC"];
-      console.log(`Coordenadas: x=${x2}, y=${y2}`);
-      medias();
+      for (let index = 0; index < (positionBeacons.length)/3; index++) {
+        if (index % 3 == 0){
+          medias(index);
+        }
+        
+      }
     }
   };
   ajax.send();
@@ -170,9 +177,9 @@ function beaconCoordenates() {
 // distancias entre a tag e os beacons
 // distancias entre o beacon B e os beacons A e C
 // calcula eixo y do tag em relação aos beacons, tomando o beacon A como referencial
-function tag_y_a() {
-  quadrado_dA1 = Math.pow(dA1, 2);
-  quadrado_dA2 = Math.pow(dA2, 2);
+function tag_y_a(i) {
+  quadrado_dA1 = Math.pow(positionBeacons[i], 2); // 0 3 6 9
+  quadrado_dA2 = Math.pow(positionBeacons[i+1], 2);
   quadrado_beacon_a = Math.pow(y2, 2);
   produto_beacon_a = 2 * y2;
   yb_relativo_a =
@@ -208,11 +215,11 @@ function tag_x_b() {
   return xb_relativo_b;
 }
 // medias das 2 medidas
-function medias() {
-  yb_relativo_a = tag_y_a();
-  xb_relativo_a = tag_x_a();
-  yb_relativo_b = tag_y_b();
-  xb_relativo_b = tag_x_b();
+function medias(i) {
+  yb_relativo_a = tag_y_a(i);
+  xb_relativo_a = tag_x_a(i);
+  yb_relativo_b = tag_y_b(i);
+  xb_relativo_b = tag_x_b(i);
   media_x = (xb_relativo_a + xb_relativo_b) / 2;
   media_y = (yb_relativo_a + yb_relativo_b) / 2;
   console.log(media_x);
