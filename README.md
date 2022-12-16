@@ -19,4 +19,7 @@ Localização indoor de Ativos
 - <a href = "https://www.linkedin.com/in/sarah-ribeiro-361130195/" >Sarah Ribeiro</a>
 
 
+## Estrutura de pastas:
+|--> Documentação
+&emsp;&emsp;|--> antigos
 
