@@ -1,3 +1,21 @@
+function makePatch(id, buzzer) {
+  let body = {
+    id: id,
+    buzzer: buzzer,
+  };
+  let patch = JSON.stringify(body);
+  const url = "https://s1cm6i-3000.preview.csb.app/tag";
+  let xhr = new XMLHttpRequest();
+  xhr.open("PATCH", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  xhr.send(patch);
+  xhr.onload = () => {
+    if (xhr.status === 201) {
+      console.log("Patch feito com sucesso");
+    }
+  };
+}
+
 if (localStorage.getItem("message")) {
   if (localStorage.getItem("message") == "updated tag") {
     toastShow();
@@ -14,7 +32,6 @@ function toastShow() {
     dangerMode: true,
   });
 }
-
 
 if (localStorage.getItem("message")) {
   if (localStorage.getItem("message") == "create category") {
@@ -43,22 +60,15 @@ ajax.onreadystatechange = () => {
     let dados = JSON.parse(ajax.responseText);
     console.log(dados);
     for (let i = 0; i < dados.length; i++) {
-      if(!dados[i].name) {
-        dados[i].name = `Tag ${i}`;
-      } else if (!dados[i].category.name) {
-        dados[i].category.name = 'oi';
-      } else if (!dados[i].category.color) {
-        dados[i].category.color = '#FFFF';
-      }
       $("#corpo-tabela-tags").append(`<tr id="tag_${dados[i]._id}">
                   <td>${dados[i].macAddress}</td>
                   <td>${dados[i].name}</td>
-                  <td><span class="${dados[i].category.color}">${dados[i].category.name}</td>
+                  <td><span class="${dados[i].category.color}"> ${dados[i].category.name} </td>
                   <td><ion-icon onclick="deleteTag('${dados[i]._id}')" name="trash-outline"></ion-icon><ion-icon name="create-outline" onclick="patchTag('${dados[i]._id}');"><ion-icon></td>
+                  <td><button onclick="makePatch('${dados[i]._id}', '${0}')" type="button" class="btn btn-danger">OFF</button> <button onclick="makePatch('${dados[i]._id}', '${1}')" type="button" class="btn btn-success">ON</button></td>
               </tr>
-      `); 
+              `);
     }
-    
   }
 };
 

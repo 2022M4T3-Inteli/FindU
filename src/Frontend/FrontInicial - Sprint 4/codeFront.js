@@ -10,15 +10,16 @@ function addToastPhoto() {
 }
 
 function toastShow() {
-  swal("Planta baixa enviada com sucesso!", "", "success", {
+  swal("Fundo alterado com sucesso!", "", "success", {
     dangerMode: true,
   });
 }
 
-const positionBeacons = [];
-const positionXY = [];
-//var y2; // Posição relativa da tag no eixo y
-//var x2; // Posição relativa da tag no eixo x
+var dA1; // Posição do beacon y
+var dA2; // Posição do beacon x
+var dA3; // Posição do beacon z
+var y2; // Posição relativa da tag no eixo y
+var x2; // Posição relativa da tag no eixo x
 
 // Listas responsáveis por armazenar uma referência das tags e dos beacon
 const beacons = [];
@@ -67,7 +68,7 @@ L.tileLayer("imagens/bg_map.png", {
 }).addTo(tela);
 
 // Barra de pesquisa das tags
-search.addEventListener('change', function (e) {
+search.addEventListener("change", function (e) {
   var input = e.target.value.toLowerCase();
   if (input != "") {
     for (let a = 0; a < tags.length; ) {
@@ -139,10 +140,11 @@ function tagsCoordenate() {
   ajax.onreadystatechange = () => {
     if (ajax.status == 200 && ajax.readyState == 4) {
       let dados = JSON.parse(ajax.responseText);
-      positionBeacons.push(dados[0]["positionY"]);
-      positionBeacons.push(dados[0]["positionX"]);
-      positionBeacons.push(dados[0]["positionZ"]);
+      dA1 = dados[0]["positionY"];
+      dA2 = dados[0]["positionX"];
+      dA3 = dados[0]["positionZ"];
       console.log("Dados");
+      console.log(`${dA1}, ${dA2}, ${dA3}`);
       beaconCoordenates();
     }
   };
@@ -156,20 +158,10 @@ function beaconCoordenates() {
   ajax.onreadystatechange = () => {
     if (ajax.status == 200 && ajax.readyState == 4) {
       let dados = JSON.parse(ajax.responseText);
-      //y2 = dados[0]["distanceA"];
-      //x2 = dados[0]["distanceC"];
-      for (let index = 0; index < dados.length; index++) {
-        console.log("Tamanho: "+index);
-        positionXY.push(dados[index]["distanceA"]);
-        positionXY.push(dados[index]["distanceC"]);
-        
-      }
-      for (let index = 0; index < (positionBeacons.length)/3; index++) {
-        if (index % 3 == 0){
-          medias(index);
-        }
-        
-      }
+      y2 = dados[0]["distanceA"];
+      x2 = dados[0]["distanceC"];
+      console.log(`Coordenadas: x=${x2}, y=${y2}`);
+      medias();
     }
   };
   ajax.send();
@@ -178,49 +170,49 @@ function beaconCoordenates() {
 // distancias entre a tag e os beacons
 // distancias entre o beacon B e os beacons A e C
 // calcula eixo y do tag em relação aos beacons, tomando o beacon A como referencial
-function tag_y_a(i) {
-  quadrado_dA1 = Math.pow(positionBeacons[i], 2); // 0 3 6 9 // d1
-  quadrado_dA2 = Math.pow(positionBeacons[i+1], 2); // d2
-  quadrado_beacon_a = Math.pow(positionXY[i], 2);
-  produto_beacon_a = 2 * positionXY[i];
+function tag_y_a() {
+  quadrado_dA1 = Math.pow(dA1, 2);
+  quadrado_dA2 = Math.pow(dA2, 2);
+  quadrado_beacon_a = Math.pow(y2, 2);
+  produto_beacon_a = 2 * y2;
   yb_relativo_a =
     (quadrado_dA1 - quadrado_dA2 + quadrado_beacon_a) / produto_beacon_a;
   console.log("tag_y_a ", yb_relativo_a);
   return yb_relativo_a;
 }
 // calcula eixo x do tag em relação aos beacons, tomando o beacon A como referencial
-function tag_x_a(i) {
-  quadrado_dA1 = Math.pow(positionBeacons[i], 2);
-  yb_relativo_a = tag_y_a(i);
+function tag_x_a() {
+  quadrado_dA1 = Math.pow(dA1, 2);
+  yb_relativo_a = tag_y_a();
   xb_relativo_a = Math.sqrt(quadrado_dA1 - yb_relativo_a);
   console.log("tag_x_a ", xb_relativo_a);
   return xb_relativo_a;
 }
 // calcula eixo y do tag em relação aos beacons, tomando o beacon B como referencial
-function tag_y_b(i) {
-  quadrado_dA1 = Math.pow(positionBeacons[i], 2);
-  quadrado_dA3 = Math.pow(positionBeacons[i+2], 2);
-  quadrado_beacon_b = Math.pow(positionXY[i+1], 2);
-  produto_beacon_b = 2 * positionXY[i+1];
+function tag_y_b() {
+  quadrado_dA1 = Math.pow(dA1, 2);
+  quadrado_dA3 = Math.pow(dA3, 2);
+  quadrado_beacon_b = Math.pow(x2, 2);
+  produto_beacon_b = 2 * x2;
   yb_relativo_b =
     (quadrado_dA1 - quadrado_dA3 + quadrado_beacon_b) / produto_beacon_b;
   console.log("tag_y_b ", yb_relativo_b);
   return yb_relativo_b;
 }
 // calcula eixo x do tag em relação aos beacons, tomando o beacon B como referencial
-function tag_x_b(i) {
-  quadrado_dA1 = Math.pow(positionBeacons[i], 2);
-  yb_relativo_b = tag_y_b(i);
+function tag_x_b() {
+  quadrado_dA1 = Math.pow(dA1, 2);
+  yb_relativo_b = tag_y_b();
   xb_relativo_b = Math.sqrt(quadrado_dA1 - yb_relativo_b);
   console.log("tag_x_b ", xb_relativo_b);
   return xb_relativo_b;
 }
 // medias das 2 medidas
-function medias(i) {
-  yb_relativo_a = tag_y_a(i);
-  xb_relativo_a = tag_x_a(i);
-  yb_relativo_b = tag_y_b(i);
-  xb_relativo_b = tag_x_b(i);
+function medias() {
+  yb_relativo_a = tag_y_a();
+  xb_relativo_a = tag_x_a();
+  yb_relativo_b = tag_y_b();
+  xb_relativo_b = tag_x_b();
   media_x = (xb_relativo_a + xb_relativo_b) / 2;
   media_y = (yb_relativo_a + yb_relativo_b) / 2;
   console.log(media_x);
@@ -253,13 +245,12 @@ function plotTag(x, y) {
         beacons.push(dados[i]["positionY"]);
         beacons.push(dados[i]["positionZ"]);
         tags[i] = dados;
-        let = L.marker([x, y], { icon: tagDiv, draggable: false })
+        let = L.marker([x, y * i], { icon: tagDiv, draggable: false })
           .addTo(tela)
           .bindPopup(
             `Nome: ${dados[i].name}<br>Categoria: ${dados[i].category.name}<br>Posição A1: ${dados[i].positionX}<br>Posição A2: ${dados[i].positionY}<br>Posição A3: ${dados[i].positionZ}`
           );
       }
-      var a = 0;
       for (let i = 0; i < beacons.length; i++) {
         beacon_num += 1;
         if (i % 3 == 0) {
@@ -273,18 +264,15 @@ function plotTag(x, y) {
         }); // Configuração da aparência do beacon
         // Esse é o if responável por fazer os beacons aparecerem em um ângulo reto entre si
         if (i % 3 == 0) {
-          let beacon = L.marker([positionXY[a+1], 0], {
+          let beacon = L.marker([x2, 0], {
             icon: myIcon,
             draggable: false,
           }).addTo(tela);
-          console.log(`${grupo}${beacon_num}:(${positionXY[a+1]},${0})`)
         } else if ((i - 1) % 3 == 0) {
-          let beacon = L.marker([0, positionXY[a]], {
+          let beacon = L.marker([0, y2], {
             icon: myIcon,
             draggable: false,
           }).addTo(tela);
-          console.log(`${grupo}${beacon_num}:(${0},${positionXY[a]})`)
-          a+=1
         } else {
           let beacon = L.marker([0, 0], {
             icon: myIcon,
@@ -300,17 +288,17 @@ function plotTag(x, y) {
             allBeacon += `<ul class="lista_Beacon">
                         <li><div class="quadrado">${
                           grupos[i]
-                        }1</div> <div class="beancon" style="color:green;"><span style="color: black;" class="material-symbols-outlined">arrow_right_alt</span> <span style="color: black;">${
+                        }</div> <div class="beancon" style="color:green;"><span style="color: black;" class="material-symbols-outlined">arrow_right_alt</span> <span style="color: black;">${
               dados[i]["positionX"]
             } M</span>  ${"80%"}<span class="material-symbols-outlined">${"battery_horiz_075"}</span></div></li>
                         <li><div class="quadrado">${
                           grupos[i]
-                        }2</div> <div class="beancon" style="color:green;"><span style="color: black;" class="material-symbols-outlined">arrow_right_alt</span> <span style="color: black;">${
+                        }</div> <div class="beancon" style="color:green;"><span style="color: black;" class="material-symbols-outlined">arrow_right_alt</span> <span style="color: black;">${
               dados[i]["positionY"]
             } M</span>  ${"80%"}<span class="material-symbols-outlined">${"battery_horiz_075"}</span></div></li>
                         <li><div class="quadrado">${
                           grupos[i]
-                        }3</div> <div class="beancon" style="color:green;"><span style="color: black;" class="material-symbols-outlined">arrow_right_alt</span> <span style="color: black;">${
+                        }</div> <div class="beancon" style="color:green;"><span style="color: black;" class="material-symbols-outlined">arrow_right_alt</span> <span style="color: black;">${
               dados[i]["positionZ"]
             } M</span>  ${"100%"}<span class="material-symbols-outlined">${"battery_full_alt"}</span></div></li>
                         </ul>`;
