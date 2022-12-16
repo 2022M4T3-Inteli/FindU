@@ -20,6 +20,20 @@ Localização indoor de Ativos
 
 
 ## Estrutura de pastas:
-|--> Documentação
-&emsp;&emsp;|--> antigos
+|--> Documentação <br>
+&emsp;&emsp;|--> antigos <br>
+&emsp;&emsp;| IoTDoc Módulo 4 - Sprint5.docx <br>
+&emsp;&emsp;| Manual de Instruções Módulo 4 - Sprint5.docx <br>
 
+|--> src <br>
+&emsp;&emsp;|--> Backend <br>
+&emsp;&emsp;|--> Código Fonte <br>
+&emsp;&emsp;|--> Frontend <br>
+&emsp;&emsp;|--> Hardware <br>
+
+|readme.md
+
+
+##Licença/License
+
+<a> Atech FindU </a> by Inteli, <a href = "https://www.linkedin.com/in/felipe-sampaio-silva"> Felipe Sampaio </a>, <a href = "https://www.linkedin.com/in/frederico-schur-6a3313237"> Frederico Schur </a>, <a href = "https://www.linkedin.com/in/jv-oliveira-rodrigues"> João Rodrigues </a>, <a href = "https://www.linkedin.com/in/leandro-custodio"> Leandro Custódio </a>, <a href = "https://www.linkedin.com/in/pedromunhozsouza"> Pedro Munhoz </a>, <a  href = "https://www.linkedin.com/in/pedro-silva-14343022a"> Pedro Silva </a> and <a href = "https://www.linkedin.com/in/sarah-ribeiro-361130195/"> Sarah Ribeiro </a> is licensed under <a href = "https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1"> Attribution 4.0 International. </a>
