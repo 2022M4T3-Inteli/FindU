@@ -1,3 +1,4 @@
+// Função que altera o valor de estado buzzer entre 0 e 1
 function makePatch(id, buzzer) {
   let body = {
     id: id,
@@ -23,10 +24,12 @@ if (localStorage.getItem("message")) {
   }
 }
 
+// Modal com atualização de tag
 function addToastUpdate() {
   localStorage.setItem("message", "updated tag");
 }
 
+// Mostrar o modal de atualização da tag
 function toastShow() {
   swal("Tag atualizada com sucesso!", "", "success", {
     dangerMode: true,
@@ -53,6 +56,7 @@ function toastShowCategory() {
 var tabela_configuracao = document.getElementById("corpo-tabela-tags");
 let showCategories = true;
 
+// Adicionar campos dinâmicos à tabela.
 let ajax = new XMLHttpRequest();
 ajax.open("GET", "https://s1cm6i-3000.preview.csb.app/tag", true);
 ajax.onreadystatechange = () => {
@@ -63,9 +67,19 @@ ajax.onreadystatechange = () => {
       $("#corpo-tabela-tags").append(`<tr id="tag_${dados[i]._id}">
                   <td>${dados[i].macAddress}</td>
                   <td>${dados[i].name}</td>
-                  <td><span class="${dados[i].category.color}"> ${dados[i].category.name} </td>
-                  <td><ion-icon onclick="deleteTag('${dados[i]._id}')" name="trash-outline"></ion-icon><ion-icon name="create-outline" onclick="patchTag('${dados[i]._id}');"><ion-icon></td>
-                  <td><button onclick="makePatch('${dados[i]._id}', '${0}')" type="button" class="btn btn-danger">OFF</button> <button onclick="makePatch('${dados[i]._id}', '${1}')" type="button" class="btn btn-success">ON</button></td>
+                  <td><span class="${dados[i].category.color}"> ${
+        dados[i].category.name
+      } </td>
+                  <td><ion-icon onclick="deleteTag('${
+                    dados[i]._id
+                  }')" name="trash-outline"></ion-icon><ion-icon name="create-outline" onclick="patchTag('${
+        dados[i]._id
+      }');"><ion-icon></td>
+                  <td><button onclick="makePatch('${
+                    dados[i]._id
+                  }', '${0}')" type="button" class="btn btn-danger">OFF</button> <button onclick="makePatch('${
+        dados[i]._id
+      }', '${1}')" type="button" class="btn btn-success">ON</button></td>
               </tr>
               `);
     }
@@ -74,6 +88,7 @@ ajax.onreadystatechange = () => {
 
 ajax.send();
 
+// Editar Tag pelo ID.
 function patchTag(id) {
   let urlCategories = "https://s1cm6i-3000.preview.csb.app/category";
   let ajax = new XMLHttpRequest();
@@ -121,7 +136,7 @@ function patchTag(id) {
   addToastUpdate();
 }
 
-//Atualização da
+//Atualização dos valores setados.
 function update() {
   let id = document.getElementById("id_form_2").value;
   let name = document.getElementById("name_form_2").value;
