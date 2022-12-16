@@ -34,6 +34,6 @@ Localização indoor de Ativos
 |readme.md
 
 
-##Licença/License
+## Licença/License
 
 <a> Atech FindU </a> by Inteli, <a href = "https://www.linkedin.com/in/felipe-sampaio-silva"> Felipe Sampaio </a>, <a href = "https://www.linkedin.com/in/frederico-schur-6a3313237"> Frederico Schur </a>, <a href = "https://www.linkedin.com/in/jv-oliveira-rodrigues"> João Rodrigues </a>, <a href = "https://www.linkedin.com/in/leandro-custodio"> Leandro Custódio </a>, <a href = "https://www.linkedin.com/in/pedromunhozsouza"> Pedro Munhoz </a>, <a  href = "https://www.linkedin.com/in/pedro-silva-14343022a"> Pedro Silva </a> and <a href = "https://www.linkedin.com/in/sarah-ribeiro-361130195/"> Sarah Ribeiro </a> is licensed under <a href = "https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1"> Attribution 4.0 International. </a>
