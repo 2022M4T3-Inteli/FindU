@@ -10,11 +10,13 @@ const TagSchema = new mongoose.Schema({
     name: {
         type: String,
         required: false,
+        default: 'Nova Tag'
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Category",
         required: false,
+        default: "639a0682a797daccce032f69"
     },
     positionX: {
         type: Number,
@@ -27,6 +29,11 @@ const TagSchema = new mongoose.Schema({
     positionZ: {
         type: Number,
         required: false,
+    },
+    buzzer: {
+        type: Number,
+        required: false,
+        default: 0
     }
 });
 

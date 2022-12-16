@@ -57,15 +57,15 @@ const getAll = async (req, res, next) => {
 // função que atualiza as informações da tag
 const update = async (req, res) => {
     try {
-        const { id, macAddress, name, category, positionX, positionY, positionZ } = req.body;
+        const { id, macAddress, name, category, positionX, positionY, positionZ, buzzer } = req.body;
 
-        if(!id && !macAddress && !name && !category && !positionX && !positionY && !positionZ) {
+        if(!id && !macAddress && !name && !category && !positionX && !positionY && !positionZ && !buzzer) {
             res.status(400).send({ message: 'Submit at least one field!' });
         }
 
         mongoose.Types.ObjectId(req.body.category);
 
-        await tagService.updateService(id, macAddress, name, category, positionX, positionY, positionZ);
+        await tagService.updateService(id, macAddress, name, category, positionX, positionY, positionZ, buzzer);
 
         return res.status(200).send({ message: 'Tag successfully updated' });
     } catch (error) {
