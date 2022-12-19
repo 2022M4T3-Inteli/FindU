@@ -5,9 +5,10 @@
 </p>
 
 
-# Projeto: Find U
-Localização indoor de Ativos
-<a><img src="https://github.com/2022M4T3-Inteli/Projeto2/blob/main/src/Frontend/FrontInicial%20-%20Sprint%204/imagens/FIND%20U%20(1).png" border="0"></a>
+# Localizador Indoor
+
+## Find U
+
 
 ## Integrantes:
 - <a href = "https://www.linkedin.com/in/felipe-sampaio-silva" >Felipe Sampaio</a>
@@ -18,20 +19,41 @@ Localização indoor de Ativos
 - <a href = "https://www.linkedin.com/in/pedro-silva-14343022a " >Pedro Silva</a>
 - <a href = "https://www.linkedin.com/in/sarah-ribeiro-361130195/" >Sarah Ribeiro</a>
 
+## 📝 Descrição
 
-## Estrutura de pastas:
-|--> Documentação <br>
-&emsp;&emsp;|--> antigos <br>
-&emsp;&emsp;| IoTDoc Módulo 4 - Sprint5.docx <br>
-&emsp;&emsp;| Manual de Instruções Módulo 4 - Sprint5.docx <br>
+A solução consiste em auxiliar a Atech na tomada de decisão, a partir da apresentação do monitoramento de mercadorias dentro de ambientes fechados. Dessa forma, será possível compreender sobre a localização de cada produto e sua frequência de transferência de um local para outro, podendo, assim, rastreá-las e, a depender da situação analisada, trocá-las de lugar.
 
-|--> src <br>
-&emsp;&emsp;|--> Backend <br>
-&emsp;&emsp;|--> Código Fonte <br>
-&emsp;&emsp;|--> Frontend <br>
-&emsp;&emsp;|--> Hardware <br>
 
-|readme.md
+## 📁 Estrutura de pastas
+
+
+|--> documentos<br>
+  &emsp;| --> outros <br>
+  &emsp;| T3_G2_V1_IoT_Document.pdf<br>
+  &emsp;| T3_G2_V1_IoT_Document.docx<br>
+  &emsp;| T3_G2_V2_1_Instruction_Manual.pdf<br>
+  &emsp;| T3_G2_V2_1_Instruction_Manual.docx<br>
+|--> src<br>
+  &emsp;|--> Backend<br>
+  &emsp;|--> Circuito<br>
+  &emsp;|--> Frontend<br>
+| readme.md<br>
+
+Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
+
+- <b>readme.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
+
+- <b>documentos</b>: aqui estão todos os documentos do projeto, incluindo o manual de instruções. Há também uma pasta denominada <b>outros</b> onde estão presentes outros documentos complementares.
+
+- <b>src</b>: todo o código fonte criado para o desenvolvimento do projeto, incluindo os blocos de código do circuito, backend e frontend se aplicáveis.
+
+## 💻 Execução do projeto
+
+Um guia para a execução desse projeto pode ser encontrado no conteúdo do documento "Manual de Instruções", dentro da pasta "documentos".
+
+Se preferir, também é possível acessá-lo a partir do seguinte link:
+
+https://github.com/2022M4T3-Inteli/FindU/blob/main/documentos/T3_G2_V2_1_Instruction_Manual.pdf
 
 
 ## Licença/License
